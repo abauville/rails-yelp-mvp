@@ -1,0 +1,19 @@
+
+<% stars = "" %>
+<% unless restaurant.reviews.empty? %>
+<% rating = restaurant.reviews.reduce(0) { |sum, review| sum + review.rating }/restaurant.reviews.length %>
+<% 5.times { |i| stars += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'} %>
+<% end %>
+
+
+<div class="card-trip">
+  <img src="http://source.unsplash.com/featured/?<%= restaurant.category %>&<%= rand(1000) %>" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= restaurant.name %></h2>
+      <p><%= restaurant.category.capitalize %></p>
+    </div>
+    <h2 class="card-trip-pricing"><%= sanitize stars %></h2>
+  </div>
+  <%= link_to "", restaurant_path(restaurant), class: 'card-link' %>
+</div>
